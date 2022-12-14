@@ -21,9 +21,9 @@ public class RadioTest {
     public void ShouldSetVolumeMax() {
         Radio radio = new Radio();
 
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -55,13 +55,13 @@ public class RadioTest {
     }
 
     @Test
-    public void ShouldIncreaseVolumeAbove10() {
+    public void ShouldIncreaseVolumeAbove100() {
         Radio radio = new Radio();
 
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(101);
         radio.increaseVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -94,12 +94,12 @@ public class RadioTest {
     }
 
     @Test
-    public void ShouldSetVolumeAbove10() {
+    public void ShouldSetVolumeAbove100() {
         Radio radio = new Radio();
 
-        radio.setCurrentVolume(11);
+        radio.setCurrentVolume(101);
 
-        int expected = 0;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -227,5 +227,29 @@ public class RadioTest {
         int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void NewConstructDefaultStation() {
+        Radio radio = new Radio();
+
+        Assertions.assertEquals(0, radio.getMinStation());
+        Assertions.assertEquals(9, radio.getMaxStation());
+    }
+
+    @Test
+    public void NewConstructChooseStation() {
+        Radio radio = new Radio(7);
+
+        Assertions.assertEquals(0, radio.getMinStation());
+        Assertions.assertEquals(6, radio.getMaxStation());
+    }
+
+    @Test
+    public void NewConstructDefaultVolume() {
+        Radio radio = new Radio();
+
+        Assertions.assertEquals(0, radio.getMinVolume());
+        Assertions.assertEquals(100, radio.getMaxVolume());
     }
 }
