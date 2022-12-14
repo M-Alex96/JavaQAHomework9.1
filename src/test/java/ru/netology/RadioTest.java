@@ -55,6 +55,19 @@ public class RadioTest {
     }
 
     @Test
+    public void ShouldIncreaseVolumeAbove10() {
+        Radio radio = new Radio();
+
+        radio.setCurrentVolume(10);
+        radio.increaseVolume();
+
+        int expected = 10;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void ShouldDecreaseVolume() {
         Radio radio = new Radio();
 
@@ -68,12 +81,25 @@ public class RadioTest {
     }
 
     @Test
+    public void ShouldDecreaseVolumeBelow0() {
+        Radio radio = new Radio();
+
+        radio.setCurrentVolume(0);
+        radio.decreaseVolume();
+
+        int expected = 0;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void ShouldSetVolumeAbove10() {
         Radio radio = new Radio();
 
         radio.setCurrentVolume(11);
 
-        int expected = 10;
+        int expected = 0;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -132,7 +158,7 @@ public class RadioTest {
         Radio radio = new Radio();
 
         radio.setCurrentStation(8);
-        radio.NextStationNumber();
+        radio.nextStationNumber();
 
         int expected = 9;
         int actual = radio.getCurrentStation();
@@ -145,7 +171,7 @@ public class RadioTest {
         Radio radio = new Radio();
 
         radio.setCurrentStation(9);
-        radio.NextStationNumber();
+        radio.nextStationNumber();
 
         int expected = 0;
         int actual = radio.getCurrentStation();
@@ -158,7 +184,7 @@ public class RadioTest {
         Radio radio = new Radio();
 
         radio.setCurrentStation(7);
-        radio.PrevStationNumber();
+        radio.prevStationNumber();
 
         int expected = 6;
         int actual = radio.getCurrentStation();
@@ -171,7 +197,7 @@ public class RadioTest {
         Radio radio = new Radio();
 
         radio.setCurrentStation(0);
-        radio.PrevStationNumber();
+        radio.prevStationNumber();
 
         int expected = 9;
         int actual = radio.getCurrentStation();
